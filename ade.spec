@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : ade
-Version  : 0.1.1d
-Release  : 2
-URL      : https://github.com/opencv/ade/archive/v0.1.1d.tar.gz
-Source0  : https://github.com/opencv/ade/archive/v0.1.1d.tar.gz
+Version  : 0.1.1f
+Release  : 3
+URL      : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
+Source0  : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -20,10 +20,7 @@ BuildRequires : googletest-dev
 
 %description
 # ADE Framework
-## Intro
-ADE Framework is a graph construction, manipulation, and processing
-framework.  ADE Framework is suitable for organizing data flow
-processing and execution.
+[![Build Status](https://travis-ci.org/opencv/ade.svg?branch=master)](https://travis-ci.org/opencv/ade)
 
 %package data
 Summary: data components for the ade package.
@@ -62,14 +59,14 @@ staticdev components for the ade package.
 
 
 %prep
-%setup -q -n ade-0.1.1d
+%setup -q -n ade-0.1.1f
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564474000
+export SOURCE_DATE_EPOCH=1570212324
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -78,11 +75,11 @@ export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1564474000
+export SOURCE_DATE_EPOCH=1570212324
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ade
 cp LICENSE %{buildroot}/usr/share/package-licenses/ade/LICENSE
