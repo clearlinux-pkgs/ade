@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : ade
 Version  : 0.1.1f
-Release  : 3
+Release  : 4
 URL      : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
 Source0  : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
 Summary  : No detailed summary available
@@ -60,29 +60,30 @@ staticdev components for the ade package.
 
 %prep
 %setup -q -n ade-0.1.1f
+cd %{_builddir}/ade-0.1.1f
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570212324
+export SOURCE_DATE_EPOCH=1604364552
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570212324
+export SOURCE_DATE_EPOCH=1604364552
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ade
-cp LICENSE %{buildroot}/usr/share/package-licenses/ade/LICENSE
+cp %{_builddir}/ade-0.1.1f/LICENSE %{buildroot}/usr/share/package-licenses/ade/2b8b815229aa8a61e483fb4ba0588b8b6c491890
 pushd clr-build
 %make_install
 popd
@@ -153,7 +154,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/ade/LICENSE
+/usr/share/package-licenses/ade/2b8b815229aa8a61e483fb4ba0588b8b6c491890
 
 %files staticdev
 %defattr(-,root,root,-)
