@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : ade
-Version  : 0.1.1f
-Release  : 4
-URL      : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
-Source0  : https://github.com/opencv/ade/archive/v0.1.1f/ade-0.1.1f.tar.gz
+Version  : 0.1.2
+Release  : 5
+URL      : https://github.com/opencv/ade/archive/v0.1.2/ade-0.1.2.tar.gz
+Source0  : https://github.com/opencv/ade/archive/v0.1.2/ade-0.1.2.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -59,15 +59,15 @@ staticdev components for the ade package.
 
 
 %prep
-%setup -q -n ade-0.1.1f
-cd %{_builddir}/ade-0.1.1f
+%setup -q -n ade-0.1.2
+cd %{_builddir}/ade-0.1.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604364552
+export SOURCE_DATE_EPOCH=1672164413
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -80,10 +80,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604364552
+export SOURCE_DATE_EPOCH=1672164413
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ade
-cp %{_builddir}/ade-0.1.1f/LICENSE %{buildroot}/usr/share/package-licenses/ade/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+cp %{_builddir}/ade-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/ade/2b8b815229aa8a61e483fb4ba0588b8b6c491890
 pushd clr-build
 %make_install
 popd
@@ -158,4 +158,4 @@ popd
 
 %files staticdev
 %defattr(-,root,root,-)
-/usr/lib/libade.a
+/usr/lib64/libade.a
